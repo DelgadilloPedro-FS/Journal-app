@@ -1,5 +1,5 @@
 import { Form, useLoaderData, redirect,useNavigate, } from "react-router-dom";
-import { updateContact } from "../contacts";
+import { updateJournal } from "../journals";
 
 
 
@@ -7,54 +7,45 @@ import { updateContact } from "../contacts";
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  await updateContact(params.contactId, updates);
-  return redirect(`/contacts/${params.contactId}`);
+  await updateJournal(params.journalId, updates);
+  return redirect(`/journals/${params.journalId}`);
 }
-export default function EditContact() {
-  const { contact } = useLoaderData();
+export default function EditJournal() {
+  const { journal } = useLoaderData();
   const navigate = useNavigate();
 
   return (
-    <Form method="post" id="contact-form">
+    <Form method="post" id="journal-form">
       <p>
-        <span>Name</span>
+        <span>Journal Name</span>
+        <input
+        placeholder="Journal"
+        aria-label="Journal name"
+        type="text"
+        name="name"
+        defaultValue={journal.name}
+        />
+      </p>
+      <p>
+        <span>Author Name</span>
         <input
           placeholder="First"
           aria-label="First name"
           type="text"
-          name="first"
-          defaultValue={contact.first}
+          name="author_First_Name"
+          defaultValue={journal.author_First_Name}
         />
         <input
           placeholder="Last"
           aria-label="Last name"
           type="text"
-          name="last"
-          defaultValue={contact.last}
+          name="author_Last_Name"
+          defaultValue={journal.author_Last_Name}
         />
       </p>
       <label>
-        <span>Twitter</span>
-        <input
-          type="text"
-          name="twitter"
-          placeholder="@jack"
-          defaultValue={contact.twitter}
-        />
-      </label>
-      <label>
-        <span>Avatar URL</span>
-        <input
-          placeholder="https://example.com/avatar.jpg"
-          aria-label="Avatar URL"
-          type="text"
-          name="avatar"
-          defaultValue={contact.avatar}
-        />
-      </label>
-      <label>
-        <span>Notes</span>
-        <textarea name="notes" defaultValue={contact.notes} rows={6} />
+        <span>Entry</span>
+        <textarea name="entry" defaultValue={journal.entry} rows={6} />
       </label>
       <p>
         <button type="submit">Save</button>
