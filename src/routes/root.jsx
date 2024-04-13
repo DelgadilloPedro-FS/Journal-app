@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 import { Outlet, NavLink, useLoaderData,Form,redirect,useNavigation, useSubmit,} from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
+import { getJournals, createJournal } from "../journals";
 
 export async function action() {
-    const contact = await createContact();
-    return redirect(`/contacts/${contact.id}/edit`);
+    const journal = await createJournal();
+    return redirect(`/journals/${journal.id}/edit`);
   }
   export async function loader({ request }) {
     const url = new URL(request.url);
     const q = url.searchParams.get("q");
-    const contacts = await getContacts(q);
-    return { contacts, q };
+    const journals = await getJournals(q);
+    return { journals, q };
   }
 
 export default function Root() {
-  const { contacts, q } = useLoaderData();
+  const { journals, q } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
 
@@ -31,13 +31,13 @@ export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
+        <h1>React Router journals</h1>
         <div>
         <Form id="search-form" role="search">
             <input
               id="q"
               className={searching ? "loading" : ""}
-              aria-label="Search contacts"
+              aria-label="Search journals"
               placeholder="Search"
               type="search"
               name="q"
@@ -57,13 +57,13 @@ export default function Root() {
           </Form>
         </div>
         <nav>
-          {contacts.length ? (
+          {journals.length ? (
             <ul>
-              {contacts.map((contact) => (
+              {journals.map((journal) => (
                 
-                <li key={contact.id}>
+                <li key={journal.id}>
                   <NavLink
-                    to={`contacts/${contact.id}`}
+                    to={`journals/${journal.id}`}
                     className={({ isActive, isPending }) =>
                       isActive
                         ? "active"
@@ -72,21 +72,21 @@ export default function Root() {
                         : ""
                     }
                   >
-                    {contact.first || contact.last ? (
+                    {journal.name ? (
                       <>
-                        {contact.first} {contact.last}
+                        {journal.name}
                       </>
                     ) : (
                       <i>No Name</i>
                     )}{" "}
-                    {contact.favorite && <span>★</span>}
+                    {journal.favorite && <span>★</span>}
                   </NavLink>
                 </li>
               ))}
             </ul>
           ) : (
             <p>
-              <i>No contacts</i>
+              <i>No journals</i>
             </p>
           )}
         </nav>
