@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./error-page";
-import Contact, {
+import Journal, {
   loader as contactLoader,
   action as contactAction,
-} from "./routes/contact";
+} from "./routes/journal";
 import Root, {
   loader as rootLoader,
   action as rootAction,
