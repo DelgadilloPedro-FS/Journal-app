@@ -60,7 +60,6 @@ export default function Root() {
           {journals.length ? (
             <ul>
               {journals.map((journal) => (
-                
                 <li key={journal.id}>
                   <NavLink
                     to={`journals/${journal.id}`}
@@ -86,7 +85,7 @@ export default function Root() {
             </ul>
           ) : (
             <p>
-              <i>No journals</i>
+              <i>No Journals</i>
             </p>
           )}
         </nav>
