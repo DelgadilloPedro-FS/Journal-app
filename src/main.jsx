@@ -1,10 +1,7 @@
 // React imports
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Css and Tailwind
 import "./index.css";
 
@@ -21,9 +18,7 @@ import Root, {
   action as rootAction,
 } from "./routes/root";
 
-import EditJournal, {
-  action as editAction,
-} from "./routes/edit";
+import EditJournal, { action as editAction } from "./routes/edit";
 
 import { action as destroyAction } from "./routes/destroy";
 import Index from "./routes/index";
@@ -63,7 +58,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-// DOM 
+// DOM
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />

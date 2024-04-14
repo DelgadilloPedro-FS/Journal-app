@@ -1,8 +1,23 @@
-# React + Vite
+React Journal App - Memory Lane
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React application designed to function as a simple journal.
 
-Currently, two official plugins are available:
+Assignment: 1.9 Memory Lane
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies Used:
+
+React: Used for building the application structure and handling user interactions.
+[CSS/Styling Library of Choice]: Tailwind CSS and CSS
+[Headless CMS/Markdown/Data Format]: Used to manage journal entries.
+Features:
+
+Homepage: Displays a list of all journal entries.
+Individual Entry Pages: Each entry has its own dedicated page with detailed content.
+Navigation: Users can navigate between the homepage and individual entry pages.
+Deployment:
+
+Hosted on: Vercel
+[Deployed Preview Link]: https://journal-zeta-two.vercel.app
+[Github Repository Link]: https://github.com/DelgadilloPedro-FS/Journal-app/
+
+

@@ -7,9 +7,11 @@ export async function getJournals(query) {
   let journals = await localforage.getItem("journals");
   if (!journals) journals = [];
   if (query) {
-    journals = matchSorter(journals, query, { keys: ["first", "last"] });
+    journals = matchSorter(journals, query, {
+      keys: ["name", "author_First_Name", "author_Last_Name"],
+    });
   }
-  return journals.sort(sortBy("last", "createdAt"));
+  return journals.sort(sortBy("createdAt"));
 }
 // crete journals
 export async function createJournal() {
@@ -75,27 +77,27 @@ async function fakeNetwork(key) {
 const DATA = [
   {
     id: "1",
-    name: "Blog - 1",
-    author_First_Name: "Firs name",
-    author_Last_Name: "Last name",
+    name: "Learning Vite",
+    author_First_Name: "Pedro",
+    author_Last_Name: "Delgadillo",
     entry: "an entry 2",
-    createdAt: 1713000191648
+    createdAt: 1713000191648,
   },
   {
     id: "2",
-    name: "Blog - 2",
-    author_First_Name: "Firs name",
-    author_Last_Name: "Last name",
+    name: "Learning React Router",
+    author_First_Name: "Pedro",
+    author_Last_Name: "Delgadillo",
     entry: "an entry 3",
-    createdAt: 1713000191648
+    createdAt: 1713000191648,
   },
   {
     id: "3",
-    name: "Blog - 3",
-    author_First_Name: "Firs name",
-    author_Last_Name: "Last name",
+    name: "Learning Vercel",
+    author_First_Name: "Pedro",
+    author_Last_Name: "Delgadillo",
     entry: "an entry 4",
-    createdAt: 1713000191648
+    createdAt: 1713000191648,
   },
 ];
 // set intial Post
