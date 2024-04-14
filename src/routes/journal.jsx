@@ -9,23 +9,21 @@ export async function action({ request, params }) {
 }
 
 export async function loader({ params }) {
-    const journal = await getJournal(params.journalId);
-    if (!journal) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return { journal };
+  const journal = await getJournal(params.journalId);
+  if (!journal) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { journal };
 }
 
 export default function journal() {
   const { journal } = useLoaderData();
 
   return (
-    <div
-      className="bg-white shadow-md rounded overflow-hidden mb-4"
-    >
+    <div className="bg-white shadow-md rounded overflow-hidden mb-4">
       <div className="flex justify-between px-4 py-3">
         <div className="flex items-center">
           <span className="text-lg font-bold mr-2">
@@ -88,7 +86,6 @@ export default function journal() {
         </div>
       </div>
     </div>
-  
   );
 }
 

@@ -1,17 +1,25 @@
 import { useEffect } from "react";
-import { Outlet, NavLink, useLoaderData,Form,redirect,useNavigation, useSubmit,} from "react-router-dom";
+import {
+  Outlet,
+  NavLink,
+  useLoaderData,
+  Form,
+  redirect,
+  useNavigation,
+  useSubmit,
+} from "react-router-dom";
 import { getJournals, createJournal } from "../journals";
 
 export async function action() {
-    const journal = await createJournal();
-    return redirect(`/journals/${journal.id}/edit`);
-  }
-  export async function loader({ request }) {
-    const url = new URL(request.url);
-    const q = url.searchParams.get("q");
-    const journals = await getJournals(q);
-    return { journals, q };
-  }
+  const journal = await createJournal();
+  return redirect(`/journals/${journal.id}/edit`);
+}
+export async function loader({ request }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const journals = await getJournals(q);
+  return { journals, q };
+}
 
 export default function Root() {
   const { journals, q } = useLoaderData();
@@ -19,10 +27,8 @@ export default function Root() {
   const submit = useSubmit();
 
   const searching =
-  navigation.location &&
-  new URLSearchParams(navigation.location.search).has(
-    "q"
-  );
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has("q");
 
   useEffect(() => {
     document.getElementById("q").value = q;
@@ -33,7 +39,7 @@ export default function Root() {
       <div id="sidebar">
         <h1>Pedro's Journal</h1>
         <div>
-        <Form id="search-form" role="search">
+          <Form id="search-form" role="search">
             <input
               id="q"
               className={searching ? "loading" : ""}
@@ -59,21 +65,17 @@ export default function Root() {
         <nav>
           {journals.length ? (
             <ul>
-              {journals.map((journal) => (
+              {journals.map((journal, index) => (
                 <li key={journal.id}>
                   <NavLink
                     to={`journals/${journal.id}`}
                     className={({ isActive, isPending }) =>
-                      isActive
-                        ? "active"
-                        : isPending
-                        ? "pending"
-                        : ""
+                      isActive ? "active" : isPending ? "pending" : ""
                     }
                   >
                     {journal.name ? (
                       <>
-                        {journal.name}
+                        {journal.name} - Journal #{index + 1}{" "}
                       </>
                     ) : (
                       <i>No Name</i>
@@ -90,10 +92,10 @@ export default function Root() {
           )}
         </nav>
       </div>
-      <div id="detail" className={
-          navigation.state === "loading" ? "loading" : ""
-        }
->
+      <div
+        id="detail"
+        className={navigation.state === "loading" ? "loading" : ""}
+      >
         <Outlet />
       </div>
     </>
