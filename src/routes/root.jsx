@@ -37,7 +37,7 @@ export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>Pedro's Journal</h1>
+        <h1>Memory Lane</h1>
         <div>
           <Form id="search-form" role="search">
             <input
