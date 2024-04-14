@@ -1,25 +1,34 @@
+// React imports
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+// Css and Tailwind
 import "./index.css";
+
 import ErrorPage from "./error-page";
+// Import Routes
+
 import Journal, {
   loader as journalLoader,
   action as journalAction,
 } from "./routes/journal";
+
 import Root, {
   loader as rootLoader,
   action as rootAction,
 } from "./routes/root";
+
 import EditJournal, {
   action as editAction,
 } from "./routes/edit";
+
 import { action as destroyAction } from "./routes/destroy";
 import Index from "./routes/index";
 
+// Browser Router
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,7 +63,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
+// DOM 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />

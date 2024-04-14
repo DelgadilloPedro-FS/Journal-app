@@ -4,7 +4,6 @@ import { updateJournal } from "../journals";
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  console.log(updates);
   await updateJournal(params.journalId, updates);
   return redirect(`/journals/${params.journalId}`);
 }
