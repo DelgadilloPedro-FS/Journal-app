@@ -4,9 +4,9 @@ import { MOCK } from "../data";
 
 export default function Index() {
   const [journals, setJournals] = useState([]);
-  set(MOCK)
   useEffect(() => {
     const fetchJournals = async () => {
+      set(MOCK);
       // Replace with your actual data fetching logic (e.g., API call)
       const response = await getJournals();
       // const data = await response.json();
@@ -16,7 +16,6 @@ export default function Index() {
     fetchJournals();
   }, []);
 
-  set(MOCK);
   return (
     <div className="items-center justify-center bg-gray-100 p-6 shadow-lg">
       <div className="flex justify-center items-center mb-8">
