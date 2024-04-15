@@ -22,7 +22,6 @@ import EditJournal, { action as editAction } from "./routes/edit";
 
 import { action as destroyAction } from "./routes/destroy";
 import Index from "./routes/index";
-
 // Browser Router
 const router = createBrowserRouter([
   {
@@ -35,7 +34,10 @@ const router = createBrowserRouter([
       {
         errorElement: <ErrorPage />,
         children: [
-          { index: true, element: <Index /> },
+          {
+            index: true,
+            element: <Index />,
+          },
           {
             path: "journals/:journalId",
             element: <Journal />,

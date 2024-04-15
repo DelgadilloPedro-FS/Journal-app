@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
+
 // get journals
 export async function getJournals(query) {
   await fakeNetwork(`getJournals:${query}`);
@@ -13,7 +14,7 @@ export async function getJournals(query) {
   }
   return journals.sort(sortBy("createdAt"));
 }
-// crete journals
+// create journals
 export async function createJournal() {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
@@ -52,7 +53,7 @@ export async function deleteJournal(id) {
   return false;
 }
 
-function set(journals) {
+export async function set(journals) {
   return localforage.setItem("journals", journals);
 }
 
@@ -73,32 +74,3 @@ async function fakeNetwork(key) {
     setTimeout(res, Math.random() * 800);
   });
 }
-// Mock Data
-const DATA = [
-  {
-    id: "1",
-    name: "Learning Vite",
-    author_First_Name: "Pedro",
-    author_Last_Name: "Delgadillo",
-    entry: "an entry 2",
-    createdAt: 1713000191648,
-  },
-  {
-    id: "2",
-    name: "Learning React Router",
-    author_First_Name: "Pedro",
-    author_Last_Name: "Delgadillo",
-    entry: "an entry 3",
-    createdAt: 1713000191648,
-  },
-  {
-    id: "3",
-    name: "Learning Vercel",
-    author_First_Name: "Pedro",
-    author_Last_Name: "Delgadillo",
-    entry: "an entry 4",
-    createdAt: 1713000191648,
-  },
-];
-// set intial Post
-set(DATA);

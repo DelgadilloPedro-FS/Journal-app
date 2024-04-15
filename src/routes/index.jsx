@@ -1,4 +1,22 @@
+import { getJournals, set } from "../journals";
+import React, { useState, useEffect } from "react";
+import { MOCK } from "../data";
+
 export default function Index() {
+  const [journals, setJournals] = useState([]);
+  set(MOCK)
+  useEffect(() => {
+    const fetchJournals = async () => {
+      // Replace with your actual data fetching logic (e.g., API call)
+      const response = await getJournals();
+      // const data = await response.json();
+      setJournals(response);
+    };
+
+    fetchJournals();
+  }, []);
+
+  set(MOCK);
   return (
     <div className="items-center justify-center bg-gray-100 p-6 shadow-lg">
       <div className="flex justify-center items-center mb-8">
@@ -8,6 +26,29 @@ export default function Index() {
         Capture your thoughts and experiences in a beautiful and easy-to-use
         journal.
       </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {journals.map((journal) => (
+          <div className="bg-white shadow-md rounded overflow-hidden mb-4">
+            <div className="px-4 py-4">
+              <p className="text-gray-700 mb-4">{journal.entry}</p>
+            </div>
+            <div className="px-4 pb-2 flex justify-between items-center border-t border-gray-200">
+              <span className="text-lg font-bold text-gray-800 p-2">
+                {journal.name ? (
+                  <>
+                    {journal.author_First_Name} {journal.author_Last_Name}
+                  </>
+                ) : (
+                  <i>No Name</i>
+                )}
+              </span>
+              <span className="text-gray-500 text-sm">
+                {new Date(journal.createdAt).toLocaleString()}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
