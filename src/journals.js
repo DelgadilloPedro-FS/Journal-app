@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
+import { MOCK } from "./data";
 
 // get journals
 export async function getJournals(query) {
@@ -74,3 +75,5 @@ async function fakeNetwork(key) {
     setTimeout(res, Math.random() * 800);
   });
 }
+
+set(MOCK);

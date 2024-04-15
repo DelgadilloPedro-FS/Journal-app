@@ -1,12 +1,10 @@
 import { getJournals, set } from "../journals";
 import React, { useState, useEffect } from "react";
-import { MOCK } from "../data";
 
 export default function Index() {
   const [journals, setJournals] = useState([]);
   useEffect(() => {
     const fetchJournals = async () => {
-      set(MOCK);
       // Replace with your actual data fetching logic (e.g., API call)
       const response = await getJournals();
       // const data = await response.json();
