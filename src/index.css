@@ -119,7 +119,7 @@ form[action$="destroy"] button {
   padding-right: 2rem;
 }
 
-#sidebar h1 {
+#homebutton {
   font-size: 1rem;
   font-weight: 500;
   display: flex;

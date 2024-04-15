@@ -25,7 +25,6 @@ export default function Root() {
   const { journals, q } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
-
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has("q");
@@ -37,7 +36,7 @@ export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>Pedro's Journal</h1>
+        <button id="homebutton" onClick={()=>navigation('/')}>Memory Lane</button>
         <div>
           <Form id="search-form" role="search">
             <input
