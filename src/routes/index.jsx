@@ -25,15 +25,22 @@ export default function Index() {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {journals.map((journal) => (
-          <div className="bg-white shadow-md rounded overflow-hidden mb-4">
+          <div
+            key={journal.id}
+            className="bg-white shadow-md rounded overflow-hidden mb-4"
+          >
             <div className="px-4 py-4">
               <p className="text-gray-700 mb-4">{journal.entry}</p>
             </div>
             <div className="px-4 pb-2 flex justify-between items-center border-t border-gray-200">
               <span className="text-lg font-bold text-gray-800 p-2">
+                {journal.img && (
+                  <img src={journal.img} alt={journal.name}/>
+                )}
+                
                 {journal.name ? (
                   <>
-                    {journal.author_First_Name} {journal.author_Last_Name}
+                    {journal.name}
                   </>
                 ) : (
                   <i>No Name</i>
