@@ -3,10 +3,7 @@ import React, { useState, useEffect } from "react";
 
 export default function Index() {
   const [journals, setJournals] = useState([]);
-  const API_BASE =
-    process.env.VERCEL_ENV === "development"
-      ? `http://localhost:8000`
-      : process.env.API_URL;
+  const API_BASE = "https://be-memorylane-c79df4f6d2d0.herokuapp.com/"
 
   useEffect(() => {
     const fetchJournals = async () => {
