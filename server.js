@@ -15,7 +15,7 @@ const journalRouter = require("./routes/journals");
 const db = mongoose.connection;
 
 const corsOptions = {
-  origin,
+  origin:origin,
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
