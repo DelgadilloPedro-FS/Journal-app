@@ -1,6 +1,6 @@
 export const MOCK = [
   {
-    id: "1",
+    _id: "1",
     name: "Learning Vite",
     author_First_Name: "Pedro",
     author_Last_Name: "Delgadillo",
@@ -9,7 +9,7 @@ export const MOCK = [
     createdAt: 1713000191248,
   },
   {
-    id: "2",
+    _id: "2",
     name: "React Router",
     author_First_Name: "Pedro",
     author_Last_Name: "Delgadillo",
@@ -18,7 +18,7 @@ export const MOCK = [
     createdAt: 1713000181648,
   },
   {
-    id: "3",
+    _id: "3",
     name: "Vercel Deployment",
     author_First_Name: "Pedro",
     author_Last_Name: "Delgadillo",
@@ -27,7 +27,7 @@ export const MOCK = [
     createdAt: 1713141538976,
   },
   {
-    id: "4",
+    _id: "4",
     name: "React Training",
     author_First_Name: "Pedro",
     author_Last_Name: "Delgadillo",

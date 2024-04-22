@@ -20,7 +20,7 @@ const getJournal = async (req, res, next) => {
 router.get("/", async (req, res) => {
   try {
     const journals = await Journal.find();
-    res.json(journals);
+    res.status(200).json(journals);
   } catch (error) {
     res.status(500).json({ messasge: error.messasge });
   }
@@ -37,7 +37,9 @@ router.post("/", async (req, res) => {
     entry: req.body.entry,
     author_First_Name: req.body.author_First_Name,
     author_Last_Name: req.body.author_Last_Name,
+    img: req.body.img,
   });
+
   try {
     const newJournal = await journal.save();
     res.status(201).json(newJournal);
