@@ -1,0 +1,33 @@
+
+GET http://localhost:8000/journals
+
+###
+
+GET http://localhost:8000/journals/6625cab03a242e0f80862c0c
+
+
+###
+
+POST http://localhost:8000/journals
+Content-Type: application/json
+
+{
+    "name": "Vercel Deployment",
+    "author_First_Name": "Pedro",
+    "author_Last_Name": "Delgadillo",
+    "entry":"Just deployed my first project to Vercel!  So easy and feels great to have it live. Now gotta figure out how to add a custom domain..."
+}
+
+###
+
+DELETE http://localhost:8000/journals/6625a281dc14fec087339373
+
+###
+
+PATCH http://localhost:8000/journals/6625a28edc14fec087339375
+Content-Type: application/json
+
+{
+    "name":"Bill",
+    "class":"DWA"
+}
