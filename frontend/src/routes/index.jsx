@@ -6,11 +6,12 @@ export default function Index() {
   const API_BASE =
     process.env.VERCEL_ENV === "development"
       ? `http://localhost:8000`
-      : process.env.BASE_URL;
+      : process.env.API_URL;
 
   useEffect(() => {
     const fetchJournals = async () => {
       try {
+        console.log(API_BASE)
         const res = await fetch(`${API_BASE}/journals`);
         const journals = await res.json();
         set(journals);
