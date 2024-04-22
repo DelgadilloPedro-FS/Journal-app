@@ -2,37 +2,10 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
-const API_BASE =
-  process.env.NODE_ENV === "development"
-    ? `http://localhost:8000`
-    : process.env.REACT_APP_BASE_URL;
-
 // get journals
 export async function getJournals(query) {
-  try {
-    // Fetch data from database API
-    const response = await fetch(`${API_BASE}/journals`);
-
-    console.log(response)
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // Store data locally (optional, for offline usage)
-    await localforage.setItem("journals", data);
-
-    return processJournals(data, query); // Process and return fetched data
-  } catch (error) {
-    console.error("Error fetching journals:", error);
-    return []; // Or return an empty array or default value if fetching fails
-  }
-}
-
-// Helper function to process fetched data (optional)
-function processJournals(data, query) {
-  let journals = data;
+  let journals = await localforage.getItem("journals");
+  if (!journals) journals = [];
   if (query) {
     journals = matchSorter(journals, query, {
       keys: ["name", "author_First_Name", "author_Last_Name"],
@@ -40,6 +13,7 @@ function processJournals(data, query) {
   }
   return journals.sort(sortBy("createdAt"));
 }
+
 // create journals
 export async function createJournal() {
   let _id = Math.random().toString(36).substring(2, 9);

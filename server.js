@@ -7,7 +7,7 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
-const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_URI = process.env.DATABASE_URI;
 
 const journalRouter = require("./routes/journals");
 
@@ -23,9 +23,9 @@ app.use(cors(corsOptions));
 
 db.on("error", (error) => console.error(error));
 
-db.once("open", () => console.log("db connected"));
+db.once("open", () => console.log("Connected to the Database"));
 
-mongoose.connect(DATABASE_URL);
+mongoose.connect(DATABASE_URI);
 app.use(express.json())
 
 app.use("/journals", journalRouter);
