@@ -54,7 +54,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8000/journals/6625cab03a242e0f80862c0c
+DELETE http://localhost:8000/journals/6625d955a13937dc7d394e8e
 
 ###
 

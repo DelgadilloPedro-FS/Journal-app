@@ -8,6 +8,7 @@ export default function Index() {
       // Replace with your actual data fetching logic (e.g., API call)
       const response = await getJournals();
       // const data = await response.json();
+      console.log("from fetch",response)
       setJournals(response);
     };
 
@@ -26,7 +27,7 @@ export default function Index() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {journals.map((journal) => (
           <div
-            key={journal.id}
+            key={journal._id}
             className="bg-white shadow-md rounded overflow-hidden mb-4"
           >
             <div className="px-4 py-4">

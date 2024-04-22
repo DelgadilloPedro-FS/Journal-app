@@ -65,9 +65,9 @@ export default function Root() {
           {journals.length ? (
             <ul>
               {journals.map((journal, index) => (
-                <li key={journal.id}>
+                <li key={journal._id}>
                   <NavLink
-                    to={`journals/${journal.id}`}
+                    to={`journals/${journal._id}`}
                     className={({ isActive, isPending }) =>
                       isActive ? "active" : isPending ? "pending" : ""
                     }
