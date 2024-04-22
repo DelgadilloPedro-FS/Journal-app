@@ -3,12 +3,23 @@ import React, { useState, useEffect } from "react";
 
 export default function Index() {
   const [journals, setJournals] = useState([]);
+  const API_BASE =
+    process.env.VERCEL_ENV === "development"
+      ? `http://localhost:8000`
+      : process.env.BASE_URL;
+
   useEffect(() => {
     const fetchJournals = async () => {
-      // Replace with your actual data fetching logic (e.g., API call)
+      try {
+        const res = await fetch(`${API_BASE}/journals`);
+        const journals = await res.json();
+        set(journals);
+        setJournals(journals);
+      } catch (error) {
+        console.error(error.message);
+      }
       const response = await getJournals();
       // const data = await response.json();
-      console.log("from fetch",response)
       setJournals(response);
     };
 
@@ -35,17 +46,9 @@ export default function Index() {
             </div>
             <div className="px-4 pb-2 flex justify-between items-center border-t border-gray-200">
               <span className="text-lg font-bold text-gray-800 p-2">
-                {journal.img && (
-                  <img src={journal.img} alt={journal.name}/>
-                )}
-                
-                {journal.name ? (
-                  <>
-                    {journal.name}
-                  </>
-                ) : (
-                  <i>No Name</i>
-                )}
+                {journal.img && <img src={journal.img} alt={journal.name} />}
+
+                {journal.name ? <>{journal.name}</> : <i>No Name</i>}
               </span>
               <span className="text-gray-500 text-sm">
                 {new Date(journal.createdAt).toLocaleString()}
