@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 export default function Index() {
   const [journals, setJournals] = useState([]);
   const API_BASE =
-    process.env.NODE_ENV === "development"
+    process.env.VERCEL_ENV === "development"
       ? `http://localhost:8000`
-      : process.env.REACT_APP_BASE_URL;
+      : process.env.BASE_URL;
 
   useEffect(() => {
     const fetchJournals = async () => {
