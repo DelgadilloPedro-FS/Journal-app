@@ -42,4 +42,6 @@ userSchema.pre("save", (next) => {
   }
 });
 
+userSchema.methods.comparePassword = funcion
+
 module.exports = mongoose.model("User", userSchema);
