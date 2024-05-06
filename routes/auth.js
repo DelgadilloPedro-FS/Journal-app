@@ -8,7 +8,7 @@ const router = express.Router();
 
 // GET ALL
 router.post("/",authCltr.signup)
-router.post('/signup',requireLogin, authCltr.signin)
+router.post('/signin',requireLogin, authCltr.signin)
 
 
 module.exports = router;

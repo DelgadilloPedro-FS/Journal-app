@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 const validateEmail = (email) => {
-  return "/^S+@S+.S+$".test(email);
-};
+    const re = /^\S+@\S+\.\S+$/;
+    return re.test(email);
+  };
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -21,27 +22,28 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", (next) => {
-  const user = this;
-
-  if (user.isNew || user.isModified("password")) {
-    bcrypt.genSalt(10, (error, salt) => {
-      if (error) {
-        return next(error);
-      }
-      bcrypt.hash(user.password, salt, null, (error, hash) => {
-        if (error) {
-          return next(error);
-        }
+userSchema.pre("save", async function(next) { 
+    const user = this; 
+  
+    if (user.isNew || user.isModified("password")) {
+      try {
+        const salt =  bcrypt.genSalt(10);
+        const hash =  bcrypt.hash(user.password, salt);
         user.password = hash;
         next();
-      });
-    });
-  } else {
-    next();
-  }
-});
+      } catch (error) {
+        return next(error);
+      }
+    } else {
+      next();
+    }
+  });
 
-userSchema.methods.comparePassword = funcion
+userSchema.methods.comparePassword = function(candidatePassword,callback){
+    bcrypt.compare(candidatePassword,this.password, function(error,isMatch){
+        if(error){return callback}
+        callback(null, isMatch)
+    })
+}
 
 module.exports = mongoose.model("User", userSchema);
