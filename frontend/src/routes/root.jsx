@@ -12,7 +12,7 @@ import { getJournals, createJournal } from "../journals";
 
 export async function action() {
   const journal = await createJournal();
-  return redirect(`/journals/${journal.id}/edit`);
+  return redirect(`/journals/${journal._id}/edit`);
 }
 export async function loader({ request }) {
   const url = new URL(request.url);

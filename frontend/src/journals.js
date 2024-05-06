@@ -2,6 +2,8 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
+
+
 // get journals
 export async function getJournals(query) {
   let journals = await localforage.getItem("journals");
@@ -16,6 +18,7 @@ export async function getJournals(query) {
 
 // create journals
 export async function createJournal() {
+  // TODO: routing issue with ID is require for 
   let _id = Math.random().toString(36).substring(2, 9);
   let journal = { _id, createdAt: Date.now() };
   let journals = await getJournals();

@@ -16,8 +16,6 @@ export default function EditJournal() {
       id="journal-form"
       className="max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
     >
-      <h2 className="text-2xl font-bold mb-4">New Journal Entry</h2>
-
       <div className="mb-6">
         <label
           htmlFor="journal-name"
