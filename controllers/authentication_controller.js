@@ -20,7 +20,7 @@ exports.signup = (req, res, next) => {
       .status(422)
       .json({ error: "Please provide your email and password" });
   }
-  User.findOne({ email: email }, (error, existingUser) => {
+  User.findOne({ email: email }).exec((error, existingUser) => {
     if (error) {
       return next(error);
     }

@@ -1,6 +1,6 @@
 const journals = require('./journals')
+const auth = require('./auth')
 
 
 
-
-module.exports={journals}
+module.exports={journals, auth}
