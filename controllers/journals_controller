@@ -1,16 +1,8 @@
 const { model } = require("mongoose");
 const Journal = require("../models/journal");
 
-const getJournal = async (id) => {
-  let journal;
-  try {
-    journal = await Journal.findById(id);
-    if (journal === null)
-      res.status(404).json({ messasge: "journal not found" });
-  } catch (error) {
-    return res.status(500).json({ messasge: error.messasge });
-  }
-  return journal;
+const getJournal = async (req, res ) => {
+
 };
 
 const getAll = async (req, res) => {
@@ -24,14 +16,14 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   let journal;
   try {
-    journal = getJournal(req.params.id);
+    journal = await Journal.findById(req.params.id);
     if (journal === null)
-      res.status(404).json({ messasge: "journal not found" });
+      return res.status(404).json({ messasge: "journal not found" });
   } catch (error) {
     return res.status(500).json({ messasge: error.messasge });
   }
-  res.journal = journal;
-  res.json(res.journal);
+
+return res.json(journal);
 };
 
 const create = async (req, res) => {
@@ -50,7 +42,7 @@ const create = async (req, res) => {
   }
 };
 const update = async (req, res) => {
-  let journal = getJournal(req.params.id);
+  let journal = getJournal(req, res);
   if (req.body.name != null) journal = req.body.name;
   if (req.body.entry != null) journal = req.body.entry;
   try {
@@ -64,7 +56,7 @@ const update = async (req, res) => {
 };
 
 const remove = async (req, res) => {
-  let journal = getJournal(req.params.id);
+  let journal = getJournal(req, res);
   try {
     await journal.deleteOne();
     res.json({ messasge: "Removed journal" });

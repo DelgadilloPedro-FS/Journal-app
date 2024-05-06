@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8000;
 const DATABASE_URI = process.env.DATABASE_URI;
 const origin = process.env.FRONTEND_ORIGIN;
 
-const journalRouter = require("./routes/journals");
+const router = require("./routes/index");
 
 const db = mongoose.connection;
 
@@ -29,7 +29,8 @@ db.once("open", () => console.log("Connected to the Database"));
 mongoose.connect(DATABASE_URI);
 app.use(express.json());
 
-app.use("/journals", journalRouter);
+app.use("/api/v2/journals", router.journals);
+app.use("/api/v2/auth", router.auth);
 
 app.listen(PORT, () => {
   console.log(`server running ${PORT}`);
